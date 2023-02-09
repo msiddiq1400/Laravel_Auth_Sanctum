@@ -62,7 +62,10 @@ class StudentController extends Controller
     }
 
     public function logout() {
-        auth()->user()->tokens()->delete();
+        /** @var \App\Models\Student */
+        $user = auth()->user();
+        $user->tokens()->delete();
+
         return response()->json([
             "status" => 1,
             "message" => "Student Logout Successfully",
